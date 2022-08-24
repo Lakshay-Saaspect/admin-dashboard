@@ -1,12 +1,12 @@
 .SidebarTree {
   animation-name: expand;
-  animation-duration: 0.4s;
+  animation-duration: 0.3s;
   animation-timing-function: linear;
 }
 
 .SidebarTreeCollapsed {
   animation-name: collapse;
-  animation-duration: 0.4s;
+  animation-duration: 0.3s;
   animation-timing-function: linear;
   max-height: 0;
   overflow: hidden;
@@ -32,4 +32,9 @@
     max-height: 0vh;
     opacity: 0;
   }
+}
+
+input:checked ~ .dot {
+  transform: translateX(100%);
+  /* background-color: #48bb78; */
 }
