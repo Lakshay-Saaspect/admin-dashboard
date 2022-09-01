@@ -58,7 +58,7 @@ const Navbar = ({ toggleShowSidebar }) => {
         >
           geetansh
           {showDropdown && (
-            <section className="gr-dropdownWhite border-red-300	p-4 absolute border-2 rounded font-light ignoreClick">
+            <section className="gr-dropdownWhite border-red-300	p-4 absolute border-2 rounded font-light ignoreClick bg-white">
               <ul>
                 {profileDropdown.map((item, index) => {
                   let { label } = item;

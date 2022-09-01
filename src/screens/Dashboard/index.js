@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Navbar from "../../components/Navbar";
+import SecondaryNavbar from "../../components/SecondaryNavbar";
 import Sidebar from "../../components/Sidebar";
+import Table from "../../components/Table";
 import { sidebarContent } from "../../constants/sidebar";
 
 const Dashboard = () => {
@@ -23,6 +25,8 @@ const Dashboard = () => {
       </section>
       <div className="p-4 flex-1">
         <Navbar toggleShowSidebar={toggleShowSidebar} />
+        <SecondaryNavbar title="Candidates" btnTitle="Add" />
+        <Table />
       </div>
     </div>
   );
