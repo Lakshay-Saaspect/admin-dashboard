@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
 import SecondaryNavbar from "../../components/SecondaryNavbar";
 import Sidebar from "../../components/Sidebar";
@@ -8,16 +8,6 @@ import { AiFillEdit, AiFillEye } from "react-icons/ai";
 import { MdPersonOff, MdDelete } from "react-icons/md";
 
 // temp data below
-const Elem = () => {
-  return (
-    <span className="flex">
-      <AiFillEdit size={20} className="mx-2" />
-      <AiFillEye size={20} className="mx-2" />
-      <MdPersonOff size={20} className="mx-2" />
-      <MdDelete size={20} className="mx-2" />
-    </span>
-  );
-};
 const columns = [
   {
     Header: "S.NO",
@@ -56,7 +46,6 @@ const tempData = [
     age: 24,
     ph: 12345,
     email: "l.saini2501@gmail.com",
-    actions: [<Elem />],
   },
   {
     sno: 1,
@@ -65,7 +54,6 @@ const tempData = [
     age: 22,
     ph: 98765,
     email: "s.nish@gmail.com",
-    actions: [<Elem />],
   },
   {
     sno: 2,
@@ -74,7 +62,6 @@ const tempData = [
     age: 24,
     ph: 12345,
     email: "l.saini2501@gmail.com",
-    actions: [<Elem />],
   },
   {
     sno: 3,
@@ -83,7 +70,6 @@ const tempData = [
     age: 22,
     ph: 98765,
     email: "s.nish@gmail.com",
-    actions: [<Elem />],
   },
   {
     sno: 4,
@@ -92,7 +78,6 @@ const tempData = [
     age: 24,
     ph: 12345,
     email: "l.saini2501@gmail.com",
-    actions: [<Elem />],
   },
   {
     sno: 5,
@@ -101,7 +86,6 @@ const tempData = [
     age: 22,
     ph: 98765,
     email: "s.nish@gmail.com",
-    actions: [<Elem />],
   },
   {
     sno: 6,
@@ -110,7 +94,6 @@ const tempData = [
     age: 24,
     ph: 12345,
     email: "l.saini2501@gmail.com",
-    actions: [<Elem />],
   },
   {
     sno: 7,
@@ -119,7 +102,6 @@ const tempData = [
     age: 22,
     ph: 98765,
     email: "s.nish@gmail.com",
-    actions: [<Elem />],
   },
   {
     sno: 8,
@@ -128,7 +110,6 @@ const tempData = [
     age: 24,
     ph: 12345,
     email: "l.saini2501@gmail.com",
-    actions: [<Elem />],
   },
   {
     sno: 9,
@@ -137,7 +118,6 @@ const tempData = [
     age: 22,
     ph: 98765,
     email: "s.nish@gmail.com",
-    actions: [<Elem />],
   },
   {
     sno: 10,
@@ -146,7 +126,6 @@ const tempData = [
     age: 24,
     ph: 12345,
     email: "l.saini2501@gmail.com",
-    actions: [<Elem />],
   },
   {
     sno: 11,
@@ -155,7 +134,6 @@ const tempData = [
     age: 22,
     ph: 98765,
     email: "s.nish@gmail.com",
-    actions: [<Elem />],
   },
   {
     sno: 12,
@@ -164,7 +142,6 @@ const tempData = [
     age: 24,
     ph: 12345,
     email: "l.saini2501@gmail.com",
-    actions: [<Elem />],
   },
   {
     sno: 13,
@@ -173,7 +150,6 @@ const tempData = [
     age: 22,
     ph: 98765,
     email: "s.nish@gmail.com",
-    actions: [<Elem />],
   },
 ];
 
@@ -181,10 +157,51 @@ const tempData = [
 
 const Dashboard = () => {
   const [showSidebar, setShowSidebar] = useState(false);
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    tempData.map((d, index) => {
+      d["actions"] = [<Elem index={index} />];
+    });
+    setData(tempData);
+  });
+
+  const handleActionClick = (action, index) => {
+    console.log("Action : ", action);
+    console.log("Index : ", index);
+  };
+
+  const Elem = ({ index }) => {
+    return (
+      <span className="flex" key={index}>
+        <AiFillEdit
+          size={20}
+          className="mx-2 hover:text-blue"
+          onClick={() => handleActionClick("edit", index)}
+        />
+        <AiFillEye
+          size={20}
+          className="mx-2 hover:text-blue"
+          onClick={() => handleActionClick("view", index)}
+        />
+        <MdPersonOff
+          size={20}
+          className="mx-2 hover:text-blue"
+          onClick={() => handleActionClick("person", index)}
+        />
+        <MdDelete
+          size={20}
+          className="mx-2 hover:text-blue"
+          onClick={() => handleActionClick("delete", index)}
+        />
+      </span>
+    );
+  };
 
   const toggleShowSidebar = () => {
     setShowSidebar(!showSidebar);
   };
+  console.log(data);
   return (
     <div className="flex">
       <section
@@ -197,10 +214,10 @@ const Dashboard = () => {
           toggleShowSidebar={toggleShowSidebar}
         />
       </section>
-      <div className="p-4 flex-1 h-screen	overflow-auto	scroll-smooth">
+      <div className="p-4 flex-1 h-screen	overflow-y-auto overflow-x-hidden	scroll-smooth">
         <Navbar toggleShowSidebar={toggleShowSidebar} />
         <SecondaryNavbar title="Candidates" btnTitle="Add" />
-        <Table columns={columns} data={tempData} />
+        {data && <Table columns={columns} data={data} />}
       </div>
     </div>
   );

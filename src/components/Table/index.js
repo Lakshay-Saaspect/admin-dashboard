@@ -5,7 +5,7 @@ import { BiChevronRight, BiChevronLeft } from "react-icons/bi";
 const Table = (props) => {
   const columns = React.useMemo(() => [...props.columns], []);
   return (
-    <div className="px-2 my-4">
+    <div className="px-2 my-4 overflow-x-auto scroll-smooth">
       <RenderTable columns={columns} data={props.data} />
     </div>
   );
@@ -32,6 +32,7 @@ function RenderTable({ columns, data }) {
     {
       columns,
       data,
+      initialState: { pageSize: 5 },
     },
     usePagination,
     useRowSelect
@@ -41,7 +42,7 @@ function RenderTable({ columns, data }) {
     <>
       <table
         {...getTableProps()}
-        className="min-w-full text-left border-collapse"
+        className="min-w-full text-left min-w-max border-collapse"
       >
         <thead className="text-sm">
           {headerGroups.map((headerGroup) => (
