@@ -1,12 +1,22 @@
 import { useState } from "react";
 import { FaMoon } from "react-icons/fa";
 import { BsSunFill } from "react-icons/bs";
+import { useSelector, useDispatch } from "react-redux";
 
 const ToggleButton = () => {
   const [checked, setChecked] = useState(false);
+
+  const theme = useSelector((state) => state?.theme);
+  console.log("Theme navbar : ", theme);
+
+  const dispatch = useDispatch();
+
   const toggleChecked = () => {
     setChecked(!checked);
+    let action = !checked ? "THEME_DARK" : "THEME_LIGHT";
+    dispatch({ type: action });
   };
+
   return (
     <div className="flex items-center justify-center self-center mx-4">
       <label htmlFor="themeToggle" className="flex items-center cursor-pointer">

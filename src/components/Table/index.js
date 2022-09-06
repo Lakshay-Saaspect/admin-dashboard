@@ -6,12 +6,12 @@ const Table = (props) => {
   const columns = React.useMemo(() => [...props.columns], []);
   return (
     <div className="px-2 my-4 overflow-x-auto scroll-smooth">
-      <RenderTable columns={columns} data={props.data} />
+      <RenderTable theme={props?.theme} columns={columns} data={props.data} />
     </div>
   );
 };
 
-function RenderTable({ columns, data }) {
+function RenderTable({ columns, data, theme }) {
   const {
     getTableProps,
     getTableBodyProps,
@@ -42,7 +42,7 @@ function RenderTable({ columns, data }) {
     <>
       <table
         {...getTableProps()}
-        className="min-w-full text-left min-w-max border-collapse"
+        className="min-w-full text-left border-collapse"
       >
         <thead className="text-sm">
           {headerGroups.map((headerGroup) => (
@@ -62,7 +62,10 @@ function RenderTable({ columns, data }) {
           {page.map((row, i) => {
             prepareRow(row);
             return (
-              <tr {...row.getRowProps()} className="hover:bg-grey rounded-sm">
+              <tr
+                {...row.getRowProps()}
+                className="hover:bg-grey hover:text-black"
+              >
                 {row.cells.map((cell) => {
                   return (
                     <td
@@ -91,7 +94,7 @@ function RenderTable({ columns, data }) {
             onClick={() => previousPage()}
             disabled={!canPreviousPage}
             className={`${
-              canPreviousPage && "hover:bg-grey"
+              canPreviousPage && "hover:bg-grey hover:text-black"
             } p-2 mx-1 rounded-full`}
           >
             <BiChevronLeft />
@@ -100,7 +103,7 @@ function RenderTable({ columns, data }) {
             onClick={() => nextPage()}
             disabled={!canNextPage}
             className={`${
-              canNextPage && "hover:bg-grey"
+              canNextPage && "hover:bg-grey hover:text-black"
             } p-2 mx-1 rounded-full`}
           >
             <BiChevronRight />
@@ -111,6 +114,7 @@ function RenderTable({ columns, data }) {
             onChange={(e) => {
               setPageSize(Number(e.target.value));
             }}
+            className={`${theme === "light" ? "bg-light" : "bg-dark"}`}
           >
             {[5, 10, 20, 30, 40, 50].map((pageSize) => (
               <option key={pageSize} value={pageSize}>

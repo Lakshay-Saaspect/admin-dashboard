@@ -6,6 +6,7 @@ import Table from "../../components/Table";
 import { sidebarContent } from "../../constants/sidebar";
 import { AiFillEdit, AiFillEye } from "react-icons/ai";
 import { MdPersonOff, MdDelete } from "react-icons/md";
+import { useSelector } from "react-redux";
 
 // temp data below
 const columns = [
@@ -159,6 +160,8 @@ const Dashboard = () => {
   const [showSidebar, setShowSidebar] = useState(false);
   const [data, setData] = useState(null);
 
+  const theme = useSelector((state) => state?.theme);
+
   useEffect(() => {
     tempData.map((d, index) => {
       d["actions"] = [<Elem index={index} />];
@@ -201,9 +204,9 @@ const Dashboard = () => {
   const toggleShowSidebar = () => {
     setShowSidebar(!showSidebar);
   };
-  console.log(data);
+
   return (
-    <div className="flex">
+    <div className={`flex`}>
       <section
         className={`transition duration-300 md:translate-x-0 md:relative -translate-x-full absolute z-50 min-w-max ${
           showSidebar ? "translate-x-0" : ""
@@ -214,10 +217,14 @@ const Dashboard = () => {
           toggleShowSidebar={toggleShowSidebar}
         />
       </section>
-      <div className="p-4 flex-1 h-screen	overflow-y-auto overflow-x-hidden	scroll-smooth">
+      <div
+        className={`transition duration-500 p-4 flex-1 h-screen	overflow-y-auto overflow-x-hidden	scroll-smooth ${
+          theme === "light" ? "bg-light" : "bg-dark text-white"
+        }`}
+      >
         <Navbar toggleShowSidebar={toggleShowSidebar} />
         <SecondaryNavbar title="Candidates" btnTitle="Add" />
-        {data && <Table columns={columns} data={data} />}
+        {data && <Table theme={theme} columns={columns} data={data} />}
       </div>
     </div>
   );
