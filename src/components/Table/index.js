@@ -114,7 +114,9 @@ function RenderTable({ columns, data, theme }) {
             onChange={(e) => {
               setPageSize(Number(e.target.value));
             }}
-            className={`${theme === "light" ? "bg-light" : "bg-dark"}`}
+            className={`${
+              theme === "light" ? "bg-light" : "bg-dark"
+            } transition duration-500`}
           >
             {[5, 10, 20, 30, 40, 50].map((pageSize) => (
               <option key={pageSize} value={pageSize}>
