@@ -205,6 +205,8 @@ const Dashboard = () => {
     setShowSidebar(!showSidebar);
   };
 
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
   return (
     <div className={`flex`}>
       <section
@@ -224,6 +226,26 @@ const Dashboard = () => {
       >
         <Navbar toggleShowSidebar={toggleShowSidebar} />
         <SecondaryNavbar title="Candidates" btnTitle="Add" />
+        <div className={`my-8 mb-10`}>
+          {["Live", "Scheduled", "Expired"].map((item, ind) => {
+            return (
+              <span
+                className={`mx-2 transition duration-500 text-xl py-2 ${
+                  ind === selectedIndex
+                    ? `${
+                        theme === "light"
+                          ? "text-dark_grey border-dark_grey"
+                          : "text-white border-white"
+                      } border-b-2 `
+                    : "text-grey_text"
+                } cursor-pointer`}
+                onClick={() => setSelectedIndex(ind)}
+              >
+                {item}
+              </span>
+            );
+          })}
+        </div>
         {data && <Table theme={theme} columns={columns} data={data} />}
       </div>
     </div>

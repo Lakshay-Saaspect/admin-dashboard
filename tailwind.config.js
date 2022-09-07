@@ -12,6 +12,8 @@ module.exports = {
         dark: "#151515",
         light: "#fff",
         sidebar_dark: "#0D0D0D",
+        dark_grey: "#404040",
+        grey_text: "#737373",
       },
     },
   },

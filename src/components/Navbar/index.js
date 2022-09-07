@@ -2,6 +2,7 @@ import ToggleButton from "../ToggleButton";
 import { BsFillCaretDownFill } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 const profileDropdown = [
   {
@@ -14,6 +15,7 @@ const profileDropdown = [
 
 const Navbar = ({ toggleShowSidebar }) => {
   const [showDropdown, setShowDropdown] = useState(false);
+  const theme = useSelector((state) => state?.theme);
 
   // const handleRandomClick = (e) => {
   //   e.preventDefault();
@@ -58,7 +60,11 @@ const Navbar = ({ toggleShowSidebar }) => {
         >
           geetansh
           {showDropdown && (
-            <section className="gr-dropdownWhite border-red-300	p-4 absolute border-2 rounded font-light ignoreClick bg-white">
+            <section
+              className={`transition duration-500 gr-dropdownWhite border-grey py-4 px-6 absolute border-2 rounded font-light ignoreClick ${
+                theme === "light" ? "bg-grey" : "bg-dark_grey"
+              } `}
+            >
               <ul>
                 {profileDropdown.map((item, index) => {
                   let { label } = item;

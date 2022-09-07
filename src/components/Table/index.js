@@ -50,7 +50,9 @@ function RenderTable({ columns, data, theme }) {
               {headerGroup.headers.map((column) => (
                 <th
                   {...column.getHeaderProps()}
-                  className="border-r-2 border-smoke py-0 px-2 cursor-pointer"
+                  className={`border-r-2 py-0 px-2 cursor-pointer ${
+                    theme === "light" ? "border-smoke" : "border-white"
+                  }`}
                 >
                   {column.render("Header")}
                 </th>
