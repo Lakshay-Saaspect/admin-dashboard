@@ -16,6 +16,9 @@ module.exports = {
         grey_text: "#737373",
       },
     },
+    screens: {
+      md: "1000px",
+    },
   },
   plugins: [],
 };

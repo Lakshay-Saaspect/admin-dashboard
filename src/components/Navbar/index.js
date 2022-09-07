@@ -17,30 +17,6 @@ const Navbar = ({ toggleShowSidebar }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const theme = useSelector((state) => state?.theme);
 
-  // const handleRandomClick = (e) => {
-  //   e.preventDefault();
-  //   let elemClassName = e?.target?.className;
-  //   console.log(elemClassName);
-  //   if (
-  //     typeof elemClassName !== "string" ||
-  //     elemClassName?.includes("ignoreClick")
-  //   ) {
-  //     return;
-  //   }
-  //   console.log(showDropdown);
-  //   if (!showDropdown) {
-  //     console.log("setting");
-  //     setShowDropdown(false);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   window.addEventListener("click", handleRandomClick);
-  //   return () => {
-  //     window.removeEventListener("click", handleRandomClick);
-  //   };
-  // }, []);
-
   const toggleShowDropdown = (e) => {
     setShowDropdown(!showDropdown);
   };

@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 
 const Sidebar = ({ sidebarData, toggleShowSidebar }) => {
   const theme = useSelector((state) => state?.theme);
-  console.log("----- ", theme === "light");
   return (
     <div
       className={`w-screen inline-block md:w-max bg-smoke`}

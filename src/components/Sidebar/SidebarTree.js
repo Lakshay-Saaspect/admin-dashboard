@@ -8,7 +8,6 @@ const SidebarTree = ({ sidebarTreeData, isExpandedTree }) => {
   const handleClick = (e, hasChilren, index, label) => {
     e.stopPropagation();
     if (!hasChilren) {
-      // console.log(label);
       return;
     }
     let tempExpanded = cloneDeep(expanded);

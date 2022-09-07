@@ -10,22 +10,13 @@ const SecondaryNavbar = (props) => {
       {showDefaultRightBtn !== false && (
         <button
           className={`transition duration-500 flex items-center rounded border-2 hover:bg-sky-100 border-blue p-2 ${
-            theme === "light" ? "border-blue" : "border-white"
+            theme === "light"
+              ? "border-blue text-blue"
+              : "border-white text-white hover:text-black"
           }`}
         >
-          <MdAdd
-            size={20}
-            className={`transition duration-500 ${
-              theme === "light" ? "text-blue" : "text-white"
-            }`}
-          />
-          <span
-            className={`transition duration-500 ml-2 ${
-              theme === "light" ? "text-blue" : "text-white"
-            }`}
-          >
-            {btnTitle}
-          </span>
+          <MdAdd size={20} />
+          <span className={`ml-2`}>{btnTitle}</span>
         </button>
       )}
     </div>

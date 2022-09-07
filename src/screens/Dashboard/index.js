@@ -13,30 +13,37 @@ const columns = [
   {
     Header: "S.NO",
     accessor: "sno",
+    minWidth: 100,
   },
   {
     Header: "First Name",
     accessor: "firstName",
+    minWidth: 100,
   },
   {
     Header: "Last Name",
     accessor: "lastName",
+    minWidth: 100,
   },
   {
     Header: "Age",
     accessor: "age",
+    minWidth: 100,
   },
   {
     Header: "Phone Number",
     accessor: "ph",
+    minWidth: 150,
   },
   {
     Header: "Email",
     accessor: "email",
+    minWidth: 100,
   },
   {
     Header: "Actions",
     accessor: "actions",
+    minWidth: 100,
   },
 ];
 const tempData = [
@@ -164,7 +171,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     tempData.map((d, index) => {
-      d["actions"] = [<Elem index={index} />];
+      d["actions"] = [<Elem key={index} index={index} />];
     });
     setData(tempData);
   });
@@ -230,6 +237,7 @@ const Dashboard = () => {
           {["Live", "Scheduled", "Expired"].map((item, ind) => {
             return (
               <span
+                key={`span ${ind}`}
                 className={`mx-2 transition duration-500 text-xl py-2 ${
                   ind === selectedIndex
                     ? `${

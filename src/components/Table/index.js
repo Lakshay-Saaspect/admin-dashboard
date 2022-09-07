@@ -1,5 +1,5 @@
 import React from "react";
-import { useTable, usePagination, useRowSelect } from "react-table";
+import ReactTable, { useTable, usePagination, useRowSelect } from "react-table";
 import { BiChevronRight, BiChevronLeft } from "react-icons/bi";
 
 const Table = (props) => {
@@ -53,6 +53,10 @@ function RenderTable({ columns, data, theme }) {
                   className={`border-r-2 py-0 px-2 cursor-pointer ${
                     theme === "light" ? "border-smoke" : "border-white"
                   }`}
+                  style={{
+                    minWidth: `${column.minWidth}px`,
+                    maxWidth: `${column.maxWidth}px`,
+                  }}
                 >
                   {column.render("Header")}
                 </th>
@@ -73,6 +77,10 @@ function RenderTable({ columns, data, theme }) {
                     <td
                       {...cell.getCellProps()}
                       className="py-4 px-2 cursor-pointer"
+                      style={{
+                        minWidth: `${cell.column.minWidth}px`,
+                        maxWidth: `${cell.column.maxWidth}px`,
+                      }}
                     >
                       {cell.render("Cell")}
                     </td>
