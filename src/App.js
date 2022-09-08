@@ -3,7 +3,7 @@ import Routing from "./routing";
 
 function App() {
   return (
-    <div className="font-light overflow-hidden">
+    <div className="font-normal overflow-hidden">
       <Routing />
     </div>
   );
