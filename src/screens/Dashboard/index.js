@@ -216,16 +216,11 @@ const Dashboard = () => {
 
   return (
     <div className={`flex`}>
-      <section
-        className={`transition duration-300 md:translate-x-0 md:relative -translate-x-full absolute z-50 min-w-max ${
-          showSidebar ? "translate-x-0" : ""
-        }`}
-      >
-        <Sidebar
-          sidebarData={sidebarContent}
-          toggleShowSidebar={toggleShowSidebar}
-        />
-      </section>
+      <Sidebar
+        showSidebar={showSidebar}
+        sidebarData={sidebarContent}
+        toggleShowSidebar={toggleShowSidebar}
+      />
       <div
         className={`transition duration-500 p-4 flex-1 h-screen	overflow-y-auto overflow-x-hidden	scroll-smooth ${
           theme === "light" ? "bg-light" : "bg-dark text-white"
